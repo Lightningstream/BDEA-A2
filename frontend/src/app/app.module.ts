@@ -11,6 +11,8 @@ import { TagCloudComponent } from './tag-cloud/tag-cloud.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import {MatCardModule} from '@angular/material/card';
     BrowserAnimationsModule,
     MatButtonModule,
     MatGridListModule,
-    MatCardModule
+    MatCardModule,
+    MatDividerModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]

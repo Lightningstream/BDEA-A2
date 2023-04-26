@@ -1,37 +1,44 @@
-<!-- Landscape Mode -->
-<mat-grid-list cols="5" rowHeight="100%" *ngIf="!this.portrait">
-  <mat-grid-tile
-      [colspan]=1
-      [rowspan]=1>
-    <app-document-view></app-document-view>
-  </mat-grid-tile>
-  <mat-grid-tile
-      [colspan]=2
-      [rowspan]=1>
-    <app-document-frequency-view></app-document-frequency-view>
-  </mat-grid-tile>
-  <mat-grid-tile
-      [colspan]=2
-      [rowspan]=1>
-    <app-term-frequency-view></app-term-frequency-view>
-  </mat-grid-tile>
-</mat-grid-list>
+<div class="main">
+  <!-- Landscape Mode -->
+  <mat-grid-list cols="5" rowHeight="100%" *ngIf="!this.portrait">
+    <mat-grid-tile
+        [colspan]=1
+        [rowspan]=1
+        class="side-nav border-right">
+      <app-document-view></app-document-view>
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]=2
+        [rowspan]=1
+        class="border-right">
+      <app-term-frequency-view></app-term-frequency-view>
+    </mat-grid-tile>
 
-<!-- Portrait Mode -->
-<mat-grid-list cols="1" rowHeight="33%" *ngIf="this.portrait">
-  <mat-grid-tile
-      [colspan]=1
-      [rowspan]=1>
-    <app-document-view></app-document-view>
-  </mat-grid-tile>
-  <mat-grid-tile
-      [colspan]=1
-      [rowspan]=1>
-    <app-document-frequency-view></app-document-frequency-view>
-  </mat-grid-tile>
-  <mat-grid-tile
-      [colspan]=1
-      [rowspan]=1>
-    <app-term-frequency-view></app-term-frequency-view>
-  </mat-grid-tile>
-</mat-grid-list>
+    <mat-grid-tile
+        [colspan]=2
+        [rowspan]=1>
+      <app-document-frequency-view></app-document-frequency-view>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <!-- Portrait Mode -->
+  <mat-grid-list cols="1" rowHeight="33%" *ngIf="this.portrait">
+    <mat-grid-tile
+        [colspan]=1
+        [rowspan]=1
+        class="side-nav  border-bottom">
+      <app-document-view></app-document-view>
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]=1
+        [rowspan]=1
+        class="border-bottom">
+      <app-term-frequency-view></app-term-frequency-view>
+    </mat-grid-tile>
+    <mat-grid-tile
+        [colspan]=1
+        [rowspan]=1>
+      <app-document-frequency-view></app-document-frequency-view>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
