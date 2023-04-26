@@ -1,4 +1,10 @@
 import { Component } from '@angular/core';
+import {BreakpointObserver} from '@angular/cdk/layout';
+
+export interface Tile {
+  cols: number;
+  rows: number;
+}
 
 @Component({
   selector: 'app-root',
@@ -6,5 +12,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'frontend';
+
+  portrait: boolean = false;
+
+  constructor(breakpointObserver: BreakpointObserver) {
+    const layoutChanges = breakpointObserver.observe([
+      '(orientation: portrait)',
+      '(orientation: landscape)',
+    ]);
+    
+    layoutChanges.subscribe(result => {
+      this.portrait = result['breakpoints']['(orientation: portrait)'];
+    });
+  }
+
 }
