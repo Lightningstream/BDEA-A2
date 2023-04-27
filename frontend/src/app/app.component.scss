@@ -1,0 +1,25 @@
+.main {
+  height: 100%;
+  width: 100%;
+  background-color: #303030;
+  color: #fff;;
+}
+
+.side-nav {
+  background-color: #424242;
+}
+
+.border-right {
+  border-right: solid 1px rgba(255,255,255,.12);
+}
+
+.border-bottom {
+  border-bottom: solid 1px rgba(255,255,255,.12);
+}
+
+.content {
+  height: -webkit-fill-available;
+  width: 100%;
+  padding: 24px;
+  align-self: self-start;
+}

@@ -1,0 +1,33 @@
+.content-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-container {
+  height: 80%;
+  overflow-y: auto;
+  padding: 16px;
+  padding-top: 24px;
+  border: solid 1px rgba(255,255,255,.12);
+  background-color: #303030;
+  // box-shadow: inset 0 -1em 1em 0 black;
+}
+
+button {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 8px;
+  white-space: pre-wrap !important;
+  display: flex !important;
+  height: fit-content !important;
+}
+
+.upload-button {
+  margin-top: auto;
+}
+
+.selected {
+  background-color: lighten(#7b1fa2, 25%) !important;
+}
