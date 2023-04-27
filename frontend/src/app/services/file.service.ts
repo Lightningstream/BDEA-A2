@@ -27,4 +27,14 @@ export class FileService {
     });
   }
 
+  getDF() {
+    const headers = new HttpHeaders().set('Prefer', 'code=200, example=Example Image');
+    return this.http.get(this.API_URL + '/df', { headers });
+  }
+
+  getTF(file: TextFile) {
+    const headers = new HttpHeaders().set('Prefer', 'code=200, example=Example Image');
+    return this.http.get(this.API_URL + '/tf/' + file.id, { headers });
+  }
+
 }

@@ -2,10 +2,11 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .button-container {
-  height: 70%;
+  height: 80%;
   overflow-y: auto;
   padding: 16px;
   padding-top: 24px;
@@ -24,6 +25,9 @@ button {
 }
 
 .upload-button {
-  background-color: #303030 !important;
   margin-top: auto;
+}
+
+.selected {
+  background-color: lighten(#7b1fa2, 25%) !important;
 }

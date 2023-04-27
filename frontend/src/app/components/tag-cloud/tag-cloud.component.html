@@ -1,4 +1,7 @@
 <div class="container">
   <h1>{{title}}</h1>
+  <h2 *ngIf="image != ''">{{heading}}</h2>
+  <img src="{{image}}" alt="TagCloud" *ngIf="image != ''">
+  <p *ngIf="image == ''">Please upload or select a document to display the tag cloud!</p>
 </div>
 

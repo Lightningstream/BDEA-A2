@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Output, ViewChild, EventEmitter } from '@angular/core';
 import { TextFile } from '../../interfaces/text-file';
 import { FileService } from 'src/app/services/file.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -11,10 +11,12 @@ import { FileUploadComponent } from '../file-upload/file-upload.component';
 })
 export class DocumentViewComponent {
 
+  currentlySelected: TextFile | undefined = undefined;
+  @Output() selectedFile = new EventEmitter<TextFile>();
+
   @ViewChild('uploadDialog') uploadDialog: any;
 
   files: TextFile[] = [];
-  titles: String[] = [];
 
   constructor(private fileService: FileService, private dialog: MatDialog) {
     this.updateFiles();
@@ -23,14 +25,12 @@ export class DocumentViewComponent {
   updateFiles() {
     this.fileService.getFiles().subscribe((data: Object) => {
       this.files = data as TextFile[];
-      this.updateTitles();
     });
   }
 
-  updateTitles() {
-    this.files.forEach(file => {
-      this.titles.push(file.title);
-    });
+  selectFile(file: TextFile) {
+    this.currentlySelected = file;
+    this.selectedFile.emit(file);
   }
 
   openDialog(): void {

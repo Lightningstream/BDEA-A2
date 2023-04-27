@@ -7,4 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class TagCloudComponent {
   @Input() title: String = '';
+  @Input() heading: String = '';
+  @Input() image: String = '';
 }

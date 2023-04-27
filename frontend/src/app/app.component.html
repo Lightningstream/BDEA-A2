@@ -1,54 +1,26 @@
 <div class="main">
-  <!-- Landscape Mode -->
-  <mat-grid-list cols="5" rowHeight="100%" *ngIf="!this.portrait">
+  <mat-grid-list cols="{{format.gridList.cols}}" rowHeight="{{format.gridList.rowheight}}">
     <mat-grid-tile
-        [colspan]=1
-        [rowspan]=1
-        class="side-nav border-right">
+        [colspan]='format.gridTiles[0][0]'
+        [rowspan]='format.gridTiles[0][1]'
+        class="side-nav {{format.borderClass}}">
       <div class="content">
-        <app-document-view></app-document-view>
+        <app-document-view (selectedFile)="changeSelectedFile($event)"></app-document-view>
       </div>
     </mat-grid-tile>
     <mat-grid-tile
-        [colspan]=2
-        [rowspan]=1
-        class="border-right">
+        [colspan]='format.gridTiles[1][0]'
+        [rowspan]='format.gridTiles[1][1]'
+        class="{{format.borderClass}}">
       <div class="content">
-        <app-term-frequency-view></app-term-frequency-view>
+        <app-term-frequency-view [tfImage]="tfImage" [selectedFile]="selectedFile"></app-term-frequency-view>
       </div>
     </mat-grid-tile>
     <mat-grid-tile
-        [colspan]=2
-        [rowspan]=1>
+        [colspan]='format.gridTiles[2][0]'
+        [rowspan]='format.gridTiles[2][1]'>
       <div class="content">
-        <app-document-frequency-view></app-document-frequency-view>
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
-
-  <!-- Portrait Mode -->
-  <mat-grid-list cols="1" rowHeight="33%" *ngIf="this.portrait">
-    <mat-grid-tile
-        [colspan]=1
-        [rowspan]=1
-        class="side-nav  border-bottom">
-      <div class="content">
-        <app-document-view></app-document-view>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile
-        [colspan]=1
-        [rowspan]=1
-        class="border-bottom">
-      <div class="content">
-        <app-term-frequency-view></app-term-frequency-view>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile
-        [colspan]=1
-        [rowspan]=1>
-      <div class="content">
-        <app-document-frequency-view></app-document-frequency-view>
+        <app-document-frequency-view [dfImage]="dfImage" (dfUpdate)="updateDF()"></app-document-frequency-view>
       </div>
     </mat-grid-tile>
   </mat-grid-list>
