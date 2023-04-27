@@ -1,0 +1,31 @@
+.file-input {
+  display: none;
+}
+
+.dialog-content {
+  width: 100%;
+}
+
+.upload-btn {
+  margin-right: 8px;
+}
+
+.dialog-container {
+  max-width: 300px;
+  max-height: 275px;
+  width: 80vh;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.file-upload {
+  margin-bottom: 16px;
+}
+
+.dialog-buttons {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}

@@ -1,0 +1,13 @@
+
+<div class="content-container">
+  <h1>Documents</h1>
+  <h2>Recently Uploaded</h2>
+  <div class="button-container">
+    <button mat-raised-button color="primary" *ngFor="let buttonTitle of titles">{{buttonTitle}}</button>
+  </div>
+
+  <button mat-raised-button (click)="openDialog()" class="upload-button">Upload Document</button>
+</div>
+
+
+

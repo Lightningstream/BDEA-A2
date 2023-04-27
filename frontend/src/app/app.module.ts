@@ -1,18 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DocumentViewComponent } from './document-view/document-view.component';
-import { TermFrequencyViewComponent } from './term-frequency-view/term-frequency-view.component';
-import { DocumentFrequencyViewComponent } from './document-frequency-view/document-frequency-view.component';
-import { TagCloudComponent } from './tag-cloud/tag-cloud.component';
+import { DocumentViewComponent } from './components/document-view/document-view.component';
+import { TermFrequencyViewComponent } from './components/term-frequency-view/term-frequency-view.component';
+import { DocumentFrequencyViewComponent } from './components/document-frequency-view/document-frequency-view.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { TagCloudComponent } from './components/tag-cloud/tag-cloud.component';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     DocumentViewComponent,
     TermFrequencyViewComponent,
     DocumentFrequencyViewComponent,
-    TagCloudComponent
+    TagCloudComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +35,11 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatGridListModule,
     MatCardModule,
     MatDividerModule,
-    MatSidenavModule
+    MatSidenavModule,
+    HttpClientModule,
+    MatDialogModule,
+    MatIconModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

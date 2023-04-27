@@ -1,0 +1,27 @@
+
+
+<div class="dialog-container">
+  <h1 mat-dialog-title>Document Upload</h1>
+  <div mat-dialog-content class="dialog-content">
+
+    <!-- Actual Document Upload -->
+    <input type="file" class="file-input" accept="text/plain"
+    (change)="onFileSelected($event)" #fileUpload>
+
+    <div class="file-upload">
+      <button mat-mini-fab color="primary" class="upload-btn"
+        (click)="fileUpload.click()">
+        <mat-icon>attach_file</mat-icon>
+      </button>
+      {{fileName || "No file uploaded yet."}}
+    </div>
+
+    <mat-error *ngIf="error != ''" class="error">{{error}}</mat-error>
+
+  </div>
+  <div mat-dialog-actions class="dialog-buttons">
+    <button mat-raised-button color="primary" (click)="onClose()">Close</button>
+    <button mat-raised-button color="primary" (click)="uploadDocument()" disabled="{{uploadedTextFile == undefined}}">Upload</button>
+  </div>
+</div>
+

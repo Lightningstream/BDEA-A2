@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tag-cloud',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./tag-cloud.component.scss']
 })
 export class TagCloudComponent {
-
+  @Input() title: String = '';
 }
