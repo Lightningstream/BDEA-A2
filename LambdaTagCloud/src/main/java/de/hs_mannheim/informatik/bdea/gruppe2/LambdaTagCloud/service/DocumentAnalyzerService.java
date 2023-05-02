@@ -46,8 +46,6 @@ public class DocumentAnalyzerService {
       tfIdfList.add(new WordFrequency(termFrequency.getWord(), tfIdf));
     }
 
-    System.out.println(tfIdfList);
-
     return tfIdfList;
   }
 
