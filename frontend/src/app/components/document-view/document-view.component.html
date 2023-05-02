@@ -2,10 +2,11 @@
 <div class="content-container">
   <h1>Documents</h1>
   <div class="button-container">
-    <button mat-raised-button color="primary" *ngFor="let file of files" (click)="selectFile(file)" class="{{file == currentlySelected ? 'selected' : ''}}">{{file.title}}</button>
+    <button mat-raised-button color="primary" *ngFor="let tagCloud of tagClouds" (click)="selectTagCloud(tagCloud)" class="{{currentlySelected != undefined && tagCloud.name == currentlySelected.name ? 'selected' : ''}}">{{tagCloud.name}}</button>
   </div>
 
-  <button mat-raised-button color="primary" (click)="openDialog()" class="upload-button">Upload Document</button>
+  <button mat-raised-button color="primary" (click)="openDialog()" class="bottom-button">Upload Document</button>
+  <button mat-raised-button color="primary" (click)="startBatch()">Start Batch</button>
 </div>
 
 

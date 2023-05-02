@@ -5,8 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DocumentViewComponent } from './components/document-view/document-view.component';
-import { TermFrequencyViewComponent } from './components/term-frequency-view/term-frequency-view.component';
-import { DocumentFrequencyViewComponent } from './components/document-frequency-view/document-frequency-view.component';
+import { TfIdfViewComponent } from './components/tf-idf-view/tf-idf-view.component';
+import { GlobalTfIdfViewComponent } from './components/global-tf-idf-view/global-tf-idf-view.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { TagCloudComponent } from './components/tag-cloud/tag-cloud.component';
 
@@ -23,8 +23,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   declarations: [
     AppComponent,
     DocumentViewComponent,
-    TermFrequencyViewComponent,
-    DocumentFrequencyViewComponent,
+    TfIdfViewComponent,
+    GlobalTfIdfViewComponent,
     TagCloudComponent,
     FileUploadComponent
   ],

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {BreakpointObserver} from '@angular/cdk/layout';
-import { TextFile } from './interfaces/text-file';
-import { FileService } from './services/file.service';
+import { TagCloud } from './interfaces/tag-cloud';
+import { TagCloudService } from './services/tag-cloud.service';
+import { DocumentViewComponent } from './components/document-view/document-view.component';
 
 export interface Format {
   gridList: {
@@ -16,10 +17,6 @@ export interface Format {
   borderClass: string
 }
 
-export interface ImageResponse {
-  image: string
-}
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -27,9 +24,11 @@ export interface ImageResponse {
 })
 export class AppComponent implements OnInit {
 
-  selectedFile: TextFile | undefined = undefined;
-  tfImage: String = '';
-  dfImage: String = '';
+  selectedTagCloud: TagCloud | undefined = undefined;
+  tfIdf_Image: String = '';
+  globalTfIdf_Image: String = '';
+
+  @ViewChild(DocumentViewComponent) documentView!: DocumentViewComponent;;
 
   landscape: Format = {
     gridList: {
@@ -58,7 +57,7 @@ export class AppComponent implements OnInit {
 
   format: Format = this.landscape;
 
-  constructor(breakpointObserver: BreakpointObserver, private fileService: FileService) {
+  constructor(breakpointObserver: BreakpointObserver, private tagCloudservice: TagCloudService) {
     const layoutChanges = breakpointObserver.observe([
       '(orientation: portrait)',
       '(orientation: landscape)',
@@ -76,22 +75,20 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.updateDF();
+    this.updateGlobalTfIdf();
   }
 
-  changeSelectedFile(file: TextFile) {
-    this.selectedFile = file;
-    this.fileService.getTF(file).subscribe(data => {
-      console.log(data);
-      this.tfImage = (data as ImageResponse).image;
+  changeSelectedTagCloud(tagCloud: TagCloud) {
+    this.selectedTagCloud = tagCloud;
+    this.tagCloudservice.getTagCloud(tagCloud.name).subscribe(data => {
+      this.tfIdf_Image = 'data:image/png;base64,' + (data as TagCloud).base64Image;
     });
   }
 
-  updateDF() {
-    console.log("Document Frequency is updated");
-    this.fileService.getDF().subscribe(data => {
-      console.log(data);
-      this.dfImage = (data as ImageResponse).image;
+  updateGlobalTfIdf() {
+    console.log("Global TF-IDF is updated");
+    this.tagCloudservice.getGlobalTagCloud().subscribe(data => {
+      this.globalTfIdf_Image = 'data:image/png;base64,' + (data as TagCloud).base64Image;
     });
   }
 
