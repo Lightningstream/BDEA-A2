@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { TextFile } from 'src/app/interfaces/text-file';
-import { FileService } from 'src/app/services/file.service';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { TagCloud } from 'src/app/interfaces/tag-cloud';
+import { TagCloudService } from 'src/app/services/tag-cloud.service';
 
 @Component({
   selector: 'app-file-upload',
@@ -11,11 +11,14 @@ import { FileService } from 'src/app/services/file.service';
 export class FileUploadComponent {
 
   fileName: String = '';
-  uploadedTextFile: TextFile | undefined = undefined;
+  uploadedFile: File | undefined = undefined;
+
+  @Output() toSelect = new EventEmitter<String>();
 
   error: String = '';
 
-  constructor(public dialogRef: MatDialogRef<FileUploadComponent>, private fileService: FileService) {}
+  constructor(public dialogRef: MatDialogRef<FileUploadComponent>, 
+    private tagCloudService: TagCloudService) {}
 
   onClose(): void {
     this.dialogRef.close();
@@ -24,7 +27,7 @@ export class FileUploadComponent {
   onFileSelected(event: any) {
 
     this.error = '';
-    this.uploadedTextFile = undefined;
+    this.uploadedFile = undefined;
 
     const file:File = event.target.files[0];
 
@@ -36,12 +39,8 @@ export class FileUploadComponent {
         fileReader.onload = () => {
 
           if (fileReader.result) {
-            this.uploadedTextFile = {
-              id: null,
-              title: file.name,
-              content: fileReader.result.toString()
-            }
-            console.log(this.uploadedTextFile);
+            this.uploadedFile = file;
+            console.log(fileReader.result.toString());
           }
           else {
             this.fileName = '';
@@ -61,9 +60,12 @@ export class FileUploadComponent {
   }
 
   uploadDocument() {
-    if (this.uploadedTextFile) {
-      this.fileService.uploadFile(this.uploadedTextFile);
-      this.onClose();
+    if (this.uploadedFile) {
+      this.tagCloudService.uploadFile(this.uploadedFile).subscribe(data => {
+        if(data as TagCloud) {
+          this.dialogRef.close({ title : (data as TagCloud).name });
+        }
+      });
     }
   }
 

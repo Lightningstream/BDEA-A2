@@ -5,7 +5,7 @@
         [rowspan]='format.gridTiles[0][1]'
         class="side-nav {{format.borderClass}}">
       <div class="content">
-        <app-document-view (selectedFile)="changeSelectedFile($event)"></app-document-view>
+        <app-document-view (selectedTagCloud)="changeSelectedTagCloud($event)"></app-document-view>
       </div>
     </mat-grid-tile>
     <mat-grid-tile
@@ -13,14 +13,14 @@
         [rowspan]='format.gridTiles[1][1]'
         class="{{format.borderClass}}">
       <div class="content">
-        <app-term-frequency-view [tfImage]="tfImage" [selectedFile]="selectedFile"></app-term-frequency-view>
+        <app-tf-idf-view [tfIdf_Image]="tfIdf_Image" [selectedTagCloud]="selectedTagCloud"></app-tf-idf-view>
       </div>
     </mat-grid-tile>
     <mat-grid-tile
         [colspan]='format.gridTiles[2][0]'
         [rowspan]='format.gridTiles[2][1]'>
       <div class="content">
-        <app-document-frequency-view [dfImage]="dfImage" (dfUpdate)="updateDF()"></app-document-frequency-view>
+        <app-global-tf-idf-view [globalTfIdf_Image]="globalTfIdf_Image"></app-global-tf-idf-view>
       </div>
     </mat-grid-tile>
   </mat-grid-list>
