@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-LambdaTagCloudApplication<LambdaTagCloud>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "de.hs_mannheim.informatik.bdea.gruppe2.LambdaTagCloud.LambdaTagCloudApplication",
+      "projectName": "LambdaTagCloud",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
