@@ -51,13 +51,13 @@ public class TagCloudService {
   }
 
   public void createTagCloud(String filename, String content) {
-
     final List<WordFrequency> tfIdfList = documentAnalyzerService.getTfIdfList(content);
 		final Dimension dimension = new Dimension(600, 600);
 		final WordCloud wordCloud = new WordCloud(dimension, CollisionMode.PIXEL_PERFECT);
 		wordCloud.setPadding(2);
 		wordCloud.setBackground(new CircleBackground(300));
-		wordCloud.setColorPalette(new ColorPalette(new Color(0x4055F1), new Color(0x408DF1), new Color(0x40AAF1), new Color(0x40C5F1), new Color(0x40D3F1), new Color(0xFFFFFF)));
+    wordCloud.setBackgroundColor(new Color(0x303030));
+		wordCloud.setColorPalette(new ColorPalette(new Color(0xBF6CE3), new Color(0x5E7DF3), new Color(0x0085EB), new Color(0x0085CB), new Color(0x007E9C), new Color(0x007468)));
 		wordCloud.setFontScalar(new SqrtFontScalar(8, 50));
 		wordCloud.build(tfIdfList);
 		wordCloud.writeToFile(FileService.TAG_CLOUD_PATH + filename + ".png");
