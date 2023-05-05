@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import de.hs_mannheim.informatik.bdea.gruppe2.LambdaTagCloud.model.TagCloud;
+import de.hs_mannheim.informatik.bdea.gruppe2.LambdaTagCloud.service.BatchService;
 import de.hs_mannheim.informatik.bdea.gruppe2.LambdaTagCloud.service.FileService;
 import de.hs_mannheim.informatik.bdea.gruppe2.LambdaTagCloud.service.TagCloudService;
 
@@ -22,10 +23,12 @@ public class TagCloudController {
 
   private final TagCloudService tagCloudService;
   private final FileService fileService;
+  private final BatchService batchService;
 
-  public TagCloudController(TagCloudService tagCloudService, FileService fileService) {
+  public TagCloudController(TagCloudService tagCloudService, FileService fileService, BatchService batchService) {
     this.tagCloudService = tagCloudService;
     this.fileService = fileService;
+    this.batchService = batchService;
   }
 
   @GetMapping("/TagCloud")
@@ -47,8 +50,8 @@ public class TagCloudController {
   }
 
   @GetMapping("/Batch")
-  public String startBatch() {
-    // Run Batch processing here
+  public String startBatch() throws IOException {
+    this.batchService.startBatch();
     return "Started batch";
   }
 

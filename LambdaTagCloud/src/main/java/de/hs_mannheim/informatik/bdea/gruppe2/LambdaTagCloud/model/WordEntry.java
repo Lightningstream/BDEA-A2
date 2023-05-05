@@ -9,4 +9,17 @@ public class WordEntry {
   @Id
   public String name;
   public int documentFrequency;
+
+  public WordEntry(String name, int documentFrequency) {
+    this.name = name;
+    this.documentFrequency = documentFrequency;
+  } 
+
+  public int getDocumentFrequency() {
+    return documentFrequency;
+  }
+
+  public void setDocumentFrequency(int documentFrequency) {
+    this.documentFrequency = documentFrequency;
+  }
 }
