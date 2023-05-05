@@ -13,6 +13,7 @@ export class DocumentViewComponent {
 
   currentlySelected: TagCloud | undefined = undefined;
   @Output() selectedTagCloud = new EventEmitter<TagCloud>();
+  @Output() triggerGlobalTFUpdate = new EventEmitter();
 
   @ViewChild('uploadDialog') uploadDialog: any;
 
@@ -59,6 +60,9 @@ export class DocumentViewComponent {
   startBatch() {
     this.tagCloudservice.startBatchJob().subscribe(data => {
       console.log(data);
+      if (data == "Finished Batch") {
+        this.triggerGlobalTFUpdate.emit();
+      }
     });
   }
 }

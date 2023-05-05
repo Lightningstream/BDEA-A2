@@ -9,4 +9,5 @@ export class TagCloudComponent {
   @Input() title: String = '';
   @Input() heading: String = '';
   @Input() image: String = '';
+  @Input() notice: String = '';
 }

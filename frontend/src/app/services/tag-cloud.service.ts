@@ -30,6 +30,7 @@ export class TagCloudService {
 
   startBatchJob() {
     return this.http.get(this.API_URL + '/Batch', { responseType: 'text' });
+
   }
 
 }

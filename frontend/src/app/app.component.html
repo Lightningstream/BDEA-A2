@@ -5,7 +5,7 @@
         [rowspan]='format.gridTiles[0][1]'
         class="side-nav {{format.borderClass}}">
       <div class="content">
-        <app-document-view (selectedTagCloud)="changeSelectedTagCloud($event)"></app-document-view>
+        <app-document-view (selectedTagCloud)="changeSelectedTagCloud($event)" (triggerGlobalTFUpdate)="updateGlobalTfIdf()"></app-document-view>
       </div>
     </mat-grid-tile>
     <mat-grid-tile
