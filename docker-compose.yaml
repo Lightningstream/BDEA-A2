@@ -25,7 +25,7 @@ services:
   backend:
     networks:
       - lambda-network
-    image: openjdk:17.0.1
+    image: openjdk:11
     volumes:
       - ./LambdaTagCloud/:/app
     working_dir: /app
@@ -35,4 +35,4 @@ services:
 
 networks:
   lambda-network:
-    driver: bridge
+    driver: host

@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class LambdaTagCloudApplication {
 
 	public static void main(String[] args) {
-		System.setProperty("hadoop.home.dir", System.getenv("HADOOP_HOME"));
+		// System.setProperty("hadoop.home.dir", System.getenv("HADOOP_HOME"));
 
 		SpringApplication.run(LambdaTagCloudApplication.class, args);
 	}

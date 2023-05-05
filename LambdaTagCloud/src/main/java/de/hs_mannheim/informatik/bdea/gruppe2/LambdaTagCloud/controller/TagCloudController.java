@@ -51,7 +51,9 @@ public class TagCloudController {
 
   @GetMapping("/Batch")
   public String startBatch() throws IOException {
-    this.batchService.startBatch();
+    // this.batchService.startBatch();
+    this.batchService.getTfIdfList("Hallo, hier sind Joel unddd Jan unddd wir werden jetzt voll krass sparken!");
+    // this.batchService.countWords();
     return "Started batch";
   }
 
