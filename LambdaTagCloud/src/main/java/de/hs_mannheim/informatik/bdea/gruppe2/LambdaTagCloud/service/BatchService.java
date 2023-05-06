@@ -114,10 +114,13 @@ public class BatchService {
                 documentFrequencies = documentFrequencies.withColumnRenamed("value", "name").withColumnRenamed("count",
                                 "documentFrequency");
                 documentFrequencies.show();
-
+                
+                // Write document frequency to mongodb
                 documentFrequencies.write().format("mongodb").mode("overwrite").save();
-
+                
+                // Rebuild all tag clouds.
                 this.calculateAllDocuments();
+                // Build global tfidf file.
                 this.calculateGlobalTfIdf();
         }
 
