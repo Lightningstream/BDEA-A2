@@ -104,7 +104,7 @@ public class BatchService {
                                 .flatMap((FlatMapFunction<String, String>) row -> {
                                         // Split all words and fill into set
                                         Set<String> set = new HashSet<>();
-                                        String[] words = row.split("\\W+");
+                                        String[] words = row.split("[^\\p{L}]+");
                                         for (String word : words) {
                                                 set.add(word);
                                         }
