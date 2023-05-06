@@ -1,6 +1,7 @@
 package de.hs_mannheim.informatik.bdea.gruppe2.LambdaTagCloud.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import de.hs_mannheim.informatik.bdea.gruppe2.LambdaTagCloud.model.TagCloud;
 import de.hs_mannheim.informatik.bdea.gruppe2.LambdaTagCloud.service.BatchService;
 import de.hs_mannheim.informatik.bdea.gruppe2.LambdaTagCloud.service.FileService;
 import de.hs_mannheim.informatik.bdea.gruppe2.LambdaTagCloud.service.TagCloudService;
+import scala.Tuple2;
 
 @RestController
 @CrossOrigin(origins = {"*"})
@@ -45,15 +47,17 @@ public class TagCloudController {
   public TagCloud uploadTagCloud(MultipartFile file) throws IOException {
     this.fileService.saveFile(file);
     final String fileName = file.getOriginalFilename().replace(".txt", "");
-    this.tagCloudService.createTagCloud(fileName, new String(file.getBytes()));
+    List<Tuple2<String,Double>> tfIdfList = this.batchService.runTfIdfJob(fileName);
+    this.tagCloudService.createTagCloud(fileName,tfIdfList);
     return this.tagCloudService.getTagCloudByName(fileName);
   }
 
   @GetMapping("/Batch")
   public String startBatch() throws IOException {
     // this.batchService.startBatch();
-    this.batchService.getTfIdfList("Hallo, hier sind Joel unddd Jan unddd wir werden jetzt voll krass sparken!");
-    // this.batchService.countWords();
+    // this.batchService.getTfIdfList("Hallo, hier sind Joel unddd Jan unddd wir werden jetzt voll krass sparken!");
+    // // this.batchService.countWords();
+    this.batchService.calculateDocumentFrequency();
     return "Started batch";
   }
 

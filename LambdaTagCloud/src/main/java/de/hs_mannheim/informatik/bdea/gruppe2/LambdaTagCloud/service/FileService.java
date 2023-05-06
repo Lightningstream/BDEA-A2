@@ -2,7 +2,10 @@ package de.hs_mannheim.informatik.bdea.gruppe2.LambdaTagCloud.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 import org.springframework.stereotype.Service;
@@ -29,6 +32,12 @@ public class FileService {
     File newFile = new File(FILE_PATH + fileName);
     Files.copy(file.getInputStream(), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
   
+  }
+
+  public String getFileContent(String filename) throws IOException {
+    Path path = Paths.get(FILE_PATH + filename + ".txt");
+    byte[] fileBytes = Files.readAllBytes(path);
+    return new String(fileBytes, StandardCharsets.UTF_8);
   }
 
   public File[] getTagCloudImages() {

@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import com.kennycason.kumo.font.scale.SqrtFontScalar;
 import com.kennycason.kumo.palette.ColorPalette;
 
 import de.hs_mannheim.informatik.bdea.gruppe2.LambdaTagCloud.model.TagCloud;
+import scala.Tuple2;
 
 @Service
 public class TagCloudService {
@@ -50,8 +52,11 @@ public class TagCloudService {
     return new TagCloud(name, base64Image);
   }
 
-  public void createTagCloud(String filename, String content) {
-    final List<WordFrequency> tfIdfList = documentAnalyzerService.getTfIdfList(content);
+  public void createTagCloud(String filename, List<Tuple2<String,Double>> tfIdfList) {
+    List<WordFrequency> convertedTfIdfList = new ArrayList<>();
+    tfIdfList.forEach(t -> {
+      convertedTfIdfList.add(new WordFrequency(t._1, (int) Math.round(t._2)));
+    });
     final Dimension dimension = new Dimension(800, 800);
     final WordCloud wordCloud = new WordCloud(dimension, CollisionMode.PIXEL_PERFECT);
     Color[] colorPalette = {
@@ -67,7 +72,7 @@ public class TagCloudService {
     wordCloud.setBackgroundColor(new Color(0x303030));
     wordCloud.setColorPalette(new ColorPalette(colorPalette));
     wordCloud.setFontScalar(new SqrtFontScalar(12, 60));
-    wordCloud.build(tfIdfList);
+    wordCloud.build(convertedTfIdfList);
     wordCloud.writeToFile(FileService.TAG_CLOUD_PATH + filename + ".png");
   }
 

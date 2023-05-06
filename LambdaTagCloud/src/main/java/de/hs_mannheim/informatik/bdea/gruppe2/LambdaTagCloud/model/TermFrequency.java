@@ -7,11 +7,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class TermFrequency {
   @Id
   public String name;
-  public int frequency;
+  public int termFrequency;
 
   public TermFrequency(String name, int frequency) {
     this.name = name;
-    this.frequency = frequency;
+    this.termFrequency = frequency;
   }
 
   public String getName() {
@@ -22,11 +22,11 @@ public class TermFrequency {
     this.name = name;
   }
 
-  public int getFrequency() {
-    return this.frequency;
+  public int getTermFrequency() {
+    return this.termFrequency;
   }
 
-  public void setFrequency(int frequency) {
-    this.frequency = frequency;
+  public void setTermFrequency(int frequency) {
+    this.termFrequency = frequency;
   } 
 }
