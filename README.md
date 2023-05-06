@@ -1,7 +1,7 @@
 # BDEA-A2
 
 ## Installation
-To run the application run `docker compose up`
+To run the application run `docker compose up`. This setup only works properly for linux distributions. If you run it on windows, please run the .mvnw File locally. If so java version 11 is required.
 
 - Spring Boot port: 8080
 - Mongodb port: 2027
