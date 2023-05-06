@@ -15,6 +15,10 @@ import de.hs_mannheim.informatik.bdea.gruppe2.LambdaTagCloud.model.WordEntry;
 @Service
 public class DocumentAnalyzerService {
 
+  /**
+   * This class is not in use. It could be used as speed layer instead of a spark job.
+   */
+
   private final WordRepository wordRepository;
   private final FileService fileService;
 
