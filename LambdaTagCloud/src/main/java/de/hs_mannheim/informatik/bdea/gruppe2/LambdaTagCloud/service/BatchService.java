@@ -27,16 +27,6 @@ public class BatchService {
     private final TagCloudService tagCloudService;
     private final SparkSession sparkSession;
 
-    public double getIdf(int numberOfDocuments, int documentFrequency) {
-        // Add + 1 because Log(1) is 0. This is called inverse document frequency
-        // smooth.
-        return Math.log((numberOfDocuments) / (documentFrequency)) + 1;
-    }
-
-    public int getTfIdf(int numberOfDocuments, int documentFrequency, int termFrequency) {
-        return (int) Math.round(termFrequency * getIdf(numberOfDocuments, documentFrequency));
-    }
-
     public BatchService(WordRepository wordRepository, FileService fileService, TagCloudService tagCloudService) {
         this.wordRepository = wordRepository;
         this.fileService = fileService;
@@ -123,7 +113,9 @@ public class BatchService {
 
     public void calculateAllDocuments() throws IOException {
         for(File file : this.fileService.getAllDocuments()) {
-                this.runTfIdfJob(file.getName().replace(".txt", ""));
+                String fileName = file.getName().replace(".txt", "");
+                List<Tuple2<String,Double>> tfIdfList = this.runTfIdfJob(fileName);
+                this.tagCloudService.createTagCloud(fileName,tfIdfList);
         }
     }
 
