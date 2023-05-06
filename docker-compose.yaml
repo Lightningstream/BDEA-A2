@@ -35,4 +35,4 @@ services:
 
 networks:
   lambda-network:
-    driver: host
+    driver: bridge
