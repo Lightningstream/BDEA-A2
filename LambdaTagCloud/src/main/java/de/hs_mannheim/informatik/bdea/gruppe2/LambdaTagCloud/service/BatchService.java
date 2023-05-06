@@ -102,7 +102,7 @@ public class BatchService {
                 // by word.
                 Dataset<Row> documentFrequencies = data
                                 .flatMap((FlatMapFunction<String, String>) row -> {
-                                        // Split all words and fill into set
+                                        // Split all words and fill into set to contain every occurrence of a word only once per file
                                         Set<String> set = new HashSet<>();
                                         String[] words = row.split("[^\\p{L}]+");
                                         for (String word : words) {
